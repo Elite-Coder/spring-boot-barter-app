@@ -9,15 +9,6 @@ public class JDBCController {
     private final static String KEYFILEPATH = "keyFile.key";
 
     @CrossOrigin
-    @RequestMapping(value = "/helloworld", method = RequestMethod.GET)
-    public String printCryptTest() {
-        AESUtils aesUtils = new AESUtils();
-
-        String encryptedStr = aesUtils.encrypt("Hello World!", KEYFILEPATH);
-        return ("Decrypt = " + aesUtils.decrypt(encryptedStr, KEYFILEPATH));
-    }
-
-    @CrossOrigin
     @RequestMapping(value = "/printAllUsers", method = RequestMethod.GET)
     public String printAllUsers() {
         JdbcTemplate jdbcTemplate = JDBCConnector.getJdbcTemplate();
@@ -34,7 +25,7 @@ public class JDBCController {
                     .append(sqlRowSet.getString("created_at"))
                     .append("\n");
         }
-        return ("SELECT * from user_info:\n" +"id"+", "+"firstName"+", "+"lastName"+", "+"addr" +", "+"phone"+", "+ "email" +", "+"createdAt\n" + resultStr);
+        return ("SELECT * from user_info:\n" +"id"+", "+"FirstName"+", "+"LastName"+", "+"Address" +", "+"Phone"+", "+ "Email" +", "+"Created At\n" + resultStr);
     }
 
     @CrossOrigin
@@ -68,7 +59,7 @@ public class JDBCController {
                     .append(sqlRowSet.getString("created_at"))
                     .append("\n");
         }
-        return ("SELECT * from item_info:\n" + resultStr);
+        return ("SELECT * from item_info:\n"+"id"+", "+ "ItemName"+", "+"Unit"+", "+"Created At"+" \n"+ resultStr);
     }
 
     @CrossOrigin
@@ -101,7 +92,7 @@ public class JDBCController {
                     .append(sqlRowSet.getString("created_at"))
                     .append("\n");
         }
-        return ("SELECT * from offer_request_details:\n" + resultStr);
+        return ("SELECT * from offer_request_details:\n" + "id"+", "+"Item Id"+", "+"Person Id"+", "+"Quantity"+", "+"Type"+", "+"Created At"+" \n"+resultStr);
     }
 
     @CrossOrigin
@@ -126,7 +117,10 @@ public class JDBCController {
         String queryStr = "UPDATE offer_request_details SET quantity =" +
                 "'" + offerRequestDetails.getQuantity() + "'"+
                  "WHERE item_id = " +
-                "'" + offerRequestDetails.getItemID() + "';";
+                "'" + offerRequestDetails.getItemID() + "'" +
+                "AND person_id = "+
+                "'" + offerRequestDetails.getPersonID() + "'" +
+                ";";
         int rowsUpdated = jdbcTemplate.update(queryStr);
         return ("Rows updated: " + rowsUpdated);
     }
