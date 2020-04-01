@@ -14,6 +14,8 @@ For building and running this application you need:
 
 •	Maven 3
 
+•	MySQL Ver 8
+
 ## URLs
 
 |  URL |  Method | Remarks |
@@ -21,8 +23,10 @@ For building and running this application you need:
 |`http://localhost:8080/printAllUsers`                           | GET | Print all users in the system|
 |`http://localhost:8080/printAllItems`                       | GET |Print all items available to barter |
 |`http://localhost:8080 /printAllOfferRequest `                 | GET |Print all barter offers and requests |
-|`http://localhost:8080/addUser` | POST | |
-|`http://localhost:8080/addItem`                             | POST | |
-|`http://localhost:8080 /addOfferRequest`                             | POST | |
-|`http://localhost:8080/ updateOfferRequest`                             | POST | |
+|`http://localhost:8080/addUser` | POST | Add a new user into the system|
+|`http://localhost:8080/addItem`                             | POST | Add a new item in the application|
+|`http://localhost:8080 /addOfferRequest`                             | POST |Create a new offer record or request record into the application |
+|`http://localhost:8080/ updateOfferRequest`                             | POST |Update an offer or request record |
+
+## Deploying the application to AWS
 
